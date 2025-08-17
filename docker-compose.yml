@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: ./api  # <-- Tambahkan ini
+      dockerfile: Dockerfile  # <-- Dan ini
+    container_name: secure-todo-api
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./api/.env
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: ./web  # <-- Path ke folder web
+      dockerfile: Dockerfile
+    container_name: secure-todo-web
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+  db:
+    image: postgres:13
+    container_name: secure-todo-db
+    env_file:
+      - ./api/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

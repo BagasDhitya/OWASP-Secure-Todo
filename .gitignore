@@ -1,0 +1,20 @@
+# Environment files
+.env
+api/.env
+cookies.txt
+
+# Dependency directories
+web/node_modules
+
+# Build artifacts
+api/main.go
+
+# Development tools
+api/.air.toml
+
+# Logs
+*.log
+
+# IDE-specific files (opsional)
+.vscode/
+.idea/
